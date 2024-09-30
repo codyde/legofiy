@@ -1,3 +1,4 @@
+import { useVariationRsc } from '@/lib/ld/server';
 import { NextResponse } from 'next/server';
 import { OpenAI } from 'openai';
 
@@ -7,6 +8,16 @@ export async function POST(req: Request, res: Response) {
 
   console.log("Receiving request to generate image.")
   const data = await req.json();
+
+//   const context = {
+//     key: "DefaultUser",
+//     name: "Default User"
+//   }
+
+  // flag example
+//   const flag = await useVariationRsc("generate-image", context, false);
+
+
 
   console.log(data)
 
