@@ -10,30 +10,33 @@ export async function POST(request: Request) {
   const { image } = body
 
   const analysisPrompt = `
-   Analyze the image provided and capture an extremely high level of detail about the individual(s) and the scene depicted. At a minimum, include the following details for each person in the image:
+   Analyze the image provided and capture an extremely high level of detail about the contents. Your goal is to recreate this image, for fun.
 
-  1- Narrative Description: Provide a detailed narrative description of the person or people in the image, including their posture, expressions, and actions within the scene.
-  2 - Hair Style: Describe the hairstyle in detail.
-  3 - Hair Length: Specify the estimated hair lengths on the top and sides.
-  4 - Hair Color: Identify the hair color accurately.
-  5 - Eye Color: Note the eye color.
-  6 - Facial Hair Style: Describe any facial hair styles.
-  7 - Facial Hair Length: Estimate the length of the facial hair.
-  8 - Facial Hair Color: Identify the color of the facial hair.
-  9 - Skin Color: Provide an accurate description of the skin tone.
-  10 - Clothing Style and Color: Describe the clothing style and colors, including any visible words or logos.
-  11 - Additional Descriptors: Include any other distinguishing features or accessories (e.g., glasses, jewelry) that would help in recreating the image.
+   If there are people in the image - ensure you're capturing enough detail to recreate the image. Structure it as follows - 
 
-  Additionally, capture information about the following:
+1- Narrative Description: Provide a detailed narrative description of the person or people in the image, including their posture, expressions, and actions within the scene.
+2 - Hair Style: Describe the hairstyle in detail.
+3 - Hair Length: Specify the estimated hair lengths on the top and sides.
+4 - Hair Color: Identify the hair color accurately.
+5 - Eye Color: Note the eye color.
+6 - Facial Hair Style: Describe any facial hair styles.
+7 - Facial Hair Length: Estimate the length of the facial hair.
+8 - Facial Hair Color: Identify the color of the facial hair.
+9 - Skin Color: Provide an accurate description of the skin tone.
+10 - Clothing Style and Color: Describe the clothing style and colors, including any visible words or logos.
+11 - Additional Descriptors: Include any other distinguishing features or accessories (e.g., glasses, jewelry) that would help in recreating the image.
 
-  Lighting: Describe the lighting conditions (e.g., natural, artificial, bright, dim).
-  Background: Provide details about the background elements and setting.
+Additionally, capture information about the following:
+
+Lighting: Describe the lighting conditions (e.g., natural, artificial, bright, dim).
+Background: Provide details about the background elements and setting.
+
   `
 
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o',
+    model: 'gpt-4o-mini',
     max_tokens: 4096,
-    temperature: 0.5,
+    temperature: 1,
     messages: [
       {
         role: "system",
